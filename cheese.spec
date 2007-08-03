@@ -15,7 +15,7 @@ BuildRequires:	gnome-vfs2-devel
 BuildRequires:	gstreamer-devel >= 0.10.12
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.12
 BuildRequires:	gtk+2-devel >= 2:2.10.0
-BuildRequires:	libglade2-devel
+BuildRequires:	libglade2-devel >= 1:2.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
