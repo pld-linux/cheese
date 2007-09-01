@@ -10,15 +10,17 @@ Source0:	%{name}-%{version}.tar.gz
 URL:		http://live.gnome.org/Cheese
 BuildRequires:	cairo-devel
 BuildRequires:	dbus-devel
+BuildRequires:	evolution-data-server-devel
 BuildRequires:	glib2-devel >= 1:2.12.0
-BuildRequires:	gnome-vfs2-devel
+BuildRequires:	gnome-vfs2-devel >= 2.0
 BuildRequires:	gstreamer-devel >= 0.10.12
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.12
 BuildRequires:	gtk+2-devel >= 2:2.10.0
 BuildRequires:	libglade2-devel >= 1:2.0.0
+BuildRequires:	libgnomeui-devel >= 2.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	xorg-proto-xf86vidmodeproto-devel
+BuildRequires:	xorg-lib-libXxf86vm-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
