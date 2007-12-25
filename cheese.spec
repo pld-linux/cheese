@@ -21,6 +21,7 @@ BuildRequires:	libgnomeui-devel >= 2.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xorg-lib-libXxf86vm-devel
+Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,7 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 %update_icon_cache hicolor
-
 %update_desktop_database_postun
 
 %files -f %{name}.lang
