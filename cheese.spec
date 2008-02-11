@@ -1,29 +1,38 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	2.21.5
+Version:	2.21.91
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	bbd993b0571596edf819a38514fd6bcc
+# Source0-md5:	18887e6c0e0c0c527b07cb2e041a72ec
 URL:		http://live.gnome.org/Cheese
-BuildRequires:	cairo-devel
-BuildRequires:	dbus-devel
-BuildRequires:	evolution-data-server-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.0
+BuildRequires:	GConf2-devel >= 2.21.90
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	evolution-data-server-devel >= 2.21.90
+BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.15.4
+BuildRequires:	gnome-doc-utils >= 0.12.0
 BuildRequires:	gstreamer-devel >= 0.10.15
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.15
-BuildRequires:	gtk+2-devel >= 2:2.10.0
-BuildRequires:	libglade2-devel >= 1:2.0.0
-BuildRequires:	libgnomeui-devel >= 2.0
+BuildRequires:	gtk+2-devel >= 2:2.12.5
+BuildRequires:	hal-devel >= 0.5.10
+BuildRequires:	intltool >= 0.37.0
+BuildRequires:	libglade2-devel >= 1:2.6.2
+BuildRequires:	libgnomeui-devel >= 2.21.90
+BuildRequires:	librsvg-devel >= 2.18.2
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xorg-lib-libXxf86vm-devel
-Requires(post,preun):	GConf2
-Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
+Requires(post,postun):	scrollkeeper
+Requires(post,preun):	GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,11 +49,18 @@ instynktów oglądania u użytkowników.
 %setup -q
 
 %build
+%{__intltoolize}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -56,20 +72,22 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %update_icon_cache hicolor
 %gconf_schema_install cheese.schemas
-%update_desktop_database_post
+%scrollkeeper_update_post
 
 %preun
 %gconf_schema_uninstall cheese.schemas
 
 %postun
 %update_icon_cache hicolor
-%update_desktop_database_postun
+%scrollkeeper_update_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-%attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/cheese
+%dir %{_libdir}/cheese
+%attr(755,root,root) %{_libdir}/cheese/cheese-bugreport.sh
 %{_sysconfdir}/gconf/schemas/cheese.schemas
-%{_desktopdir}/%{name}.desktop
-%{_datadir}/%{name}
+%{_desktopdir}/cheese.desktop
+%{_datadir}/cheese
 %{_iconsdir}/hicolor/*/apps/*
