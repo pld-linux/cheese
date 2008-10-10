@@ -1,28 +1,29 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	2.22.3
+Version:	2.24.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	21c23e289b1c8a1ae014704d615a9540
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.24/%{name}-%{version}.tar.bz2
+# Source0-md5:	12536184509158aeffadb3f4aa1fd3fc
 URL:		http://live.gnome.org/Cheese
-BuildRequires:	GConf2-devel >= 2.22.0
+BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	evolution-data-server-devel >= 2.22.0
+BuildRequires:	evolution-data-server-devel >= 2.24.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.15.4
-BuildRequires:	gnome-doc-utils >= 0.12.0
-BuildRequires:	gstreamer-devel >= 0.10.15
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.15
-BuildRequires:	gtk+2-devel >= 2:2.12.5
+BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	gnome-common >= 2.24.0
+BuildRequires:	gnome-doc-utils >= 0.14.0
+BuildRequires:	gnome-vfs2-devel >= 2.24.0
+BuildRequires:	gstreamer-devel >= 0.10.16
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.16
+BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	hal-devel >= 0.5.10
-BuildRequires:	intltool >= 0.37.0
-BuildRequires:	libglade2-devel >= 1:2.6.2
-BuildRequires:	libgnomeui-devel >= 2.22.0
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libgnomeui-devel >= 2.24.0
 BuildRequires:	librsvg-devel >= 2.18.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -90,4 +91,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/cheese.schemas
 %{_desktopdir}/cheese.desktop
 %{_datadir}/cheese
+%{_datadir}/dbus-1/services/org.gnome.Cheese.service
 %{_iconsdir}/hicolor/*/apps/*
