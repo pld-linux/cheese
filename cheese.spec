@@ -76,6 +76,8 @@ Dokumentacja API cheese.
 
 %prep
 %setup -q
+sed -i s#^en@shaw## po/LINGUAS
+rm po/en@shaw.po
 
 %build
 %{__intltoolize}
