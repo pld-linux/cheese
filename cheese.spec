@@ -23,7 +23,9 @@ BuildRequires:	gnome-vfs2-devel >= 2.24.0
 BuildRequires:	gstreamer-devel >= 0.10.16
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.16
 BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libcanberra-gtk-devel
 BuildRequires:	libgnomeui-devel >= 2.24.0
 BuildRequires:	librsvg-devel >= 2.18.2
 BuildRequires:	libtool
