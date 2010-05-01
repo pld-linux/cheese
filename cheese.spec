@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	2.30.0
+Version:	2.30.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.30/%{name}-%{version}.tar.bz2
-# Source0-md5:	bdcd6f220749ec7ec1a7d4b4726cac78
+# Source0-md5:	1599fded8a1797ea51fb010af4e6c45b
 URL:		http://live.gnome.org/Cheese
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
@@ -19,14 +19,12 @@ BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 2.26.0
 BuildRequires:	gnome-doc-utils >= 0.14.0
-BuildRequires:	gnome-vfs2-devel >= 2.24.0
-BuildRequires:	gstreamer-devel >= 0.10.16
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.16
-BuildRequires:	gtk+2-devel >= 2:2.14.0
-BuildRequires:	gtk-doc-automake
+BuildRequires:	gstreamer-devel >= 0.10.23
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
+BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gtk-doc-automake >= 1.11
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk-devel
-BuildRequires:	libgnomeui-devel >= 2.24.0
 BuildRequires:	librsvg-devel >= 2.18.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -38,8 +36,9 @@ Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
-Requires:	gstreamer-theora
-Requires:	gstreamer-vorbis
+Requires:	gstreamer-theora >= 0.10.23
+Requires:	gstreamer-vorbis >= 0.10.23
+Requires:	gtk+2 >= 2:2.20.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,32 +52,35 @@ Udostępnia także kilka graficznych efektów w celu zaspokojenia
 instynktów oglądania u użytkowników.
 
 %package devel
-Summary:	cheese header files
-Summary(pl.UTF-8):	Pliki nagłówkowe cheese
+Summary:	Cheese header files
+Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	gstreamer-plugins-base-devel >= 0.10.23
+Requires:	gtk+2-devel >= 2:2.20.0
+Requires:	libcanberra-gtk-devel
 
 %description devel
-cheese header files.
+Cheese header files.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe cheese.
+Pliki nagłówkowe Cheese.
 
 %package apidocs
-Summary:	cheese API documentation
-Summary(pl.UTF-8):	Dokumentacja API cheese
+Summary:	Cheese API documentation
+Summary(pl.UTF-8):	Dokumentacja API Cheese
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
-cheese API documentation.
+Cheese API documentation.
 
 %description apidocs -l pl.UTF-8
-Dokumentacja API cheese.
+Dokumentacja API Cheese.
 
 %prep
 %setup -q
-sed -i s#^en@shaw## po/LINGUAS
+sed -i 's#^en@shaw##' po/LINGUAS
 rm po/en@shaw.po
 
 %build
@@ -91,7 +93,9 @@ rm po/en@shaw.po
 %configure \
 	--disable-schemas-install \
 	--disable-scrollkeeper \
+	--disable-silent-rules \
 	--disable-static \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -136,8 +140,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcheese-gtk.la
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so
+%{_libdir}/libcheese-gtk.la
 %{_includedir}/cheese
 %{_pkgconfigdir}/cheese-gtk.pc
 
