@@ -22,6 +22,7 @@ BuildRequires:	gnome-doc-utils >= 0.14.0
 BuildRequires:	gstreamer-devel >= 0.10.23
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
 BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake >= 1.11
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk-devel
