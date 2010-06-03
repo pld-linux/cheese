@@ -106,6 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %find_lang %{name} --with-gnome --with-omf
 
 %clean
@@ -142,7 +144,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so
-%{_libdir}/libcheese-gtk.la
 %{_includedir}/cheese
 %{_pkgconfigdir}/cheese-gtk.pc
 
