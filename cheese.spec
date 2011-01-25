@@ -7,7 +7,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.32/%{name}-%{version}.tar.bz2
 # Source0-md5:	e3b822e46b2558d0bbdfa4809d5d3c24
-URL:		http://live.gnome.org/Cheese
+URL:		http://projects.gnome.org/cheese/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
