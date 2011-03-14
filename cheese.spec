@@ -40,6 +40,8 @@ BuildRequires:	xorg-lib-libXxf86vm-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
+Requires:	gstreamer-plugins-bad
+Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 0.10.32
 Requires:	gstreamer-vorbis >= 0.10.32
 Requires:	hicolor-icon-theme
