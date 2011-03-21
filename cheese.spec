@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	2.91.91.1
+Version:	2.91.92
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	5f3ee91e563182ca6d571a6e87292b95
+# Source0-md5:	ea205c215ad5ab2f38228202c5413e7c
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -40,6 +40,8 @@ BuildRequires:	xorg-lib-libXxf86vm-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	gnome-video-effects
 Requires:	gstreamer-plugins-bad
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 0.10.32
@@ -57,11 +59,22 @@ Cheese to program do pobierania zdjęć i filmów z kamery internetowej.
 Udostępnia także kilka graficznych efektów w celu zaspokojenia
 instynktów oglądania u użytkowników.
 
+%package libs
+Summary:	Cheese libraries
+Summary(pl.UTF-8):	Biblioteki Cheese
+Group:		X11/Libraries
+
+%description libs
+Cheese libraries.
+
+%description libs -l pl.UTF-8
+Biblioteki Cheese.
+
 %package devel
 Summary:	Cheese header files
 Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gstreamer-plugins-base-devel >= 0.10.32
 Requires:	gtk+3-devel >= 3.0.0
 Requires:	libcanberra-gtk3-devel >= 0.26
@@ -117,30 +130,34 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %update_icon_cache hicolor
 %scrollkeeper_update_post
 %glib_compile_schemas
 
 %postun
-/sbin/ldconfig
 %update_icon_cache hicolor
 %scrollkeeper_update_postun
 %glib_compile_schemas
+
+%post libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/cheese
+%{_desktopdir}/cheese.desktop
+%{_datadir}/cheese
+%{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
+%{_iconsdir}/hicolor/*/apps/*
+
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.19
 %attr(755,root,root) %{_libdir}/libcheese.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcheese.so.0
 %{_libdir}/girepository-1.0/Cheese-3.0.typelib
-%{_desktopdir}/cheese.desktop
-%{_datadir}/cheese
-%{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
-%{_iconsdir}/hicolor/*/apps/*
 
 %files devel
 %defattr(644,root,root,755)
