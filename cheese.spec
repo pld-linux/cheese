@@ -81,8 +81,6 @@ Dokumentacja API Cheese.
 
 %prep
 %setup -q
-sed -i 's#^en@shaw##' po/LINGUAS
-rm po/en@shaw.po
 
 %build
 %{__intltoolize}
@@ -106,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name} --with-gnome --with-omf
 
