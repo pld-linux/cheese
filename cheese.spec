@@ -1,45 +1,53 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	2.32.0
-Release:	3
+Version:	3.0.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/2.32/%{name}-%{version}.tar.bz2
-# Source0-md5:	e3b822e46b2558d0bbdfa4809d5d3c24
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	cadae7bd46cb88e6911f5389e1c88e45
 URL:		http://projects.gnome.org/cheese/
-BuildRequires:	GConf2-devel >= 2.24.0
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	autoconf >= 2.64
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	clutter-devel >= 1.6.1
+BuildRequires:	clutter-gst-devel >= 1.0.0
+BuildRequires:	clutter-gtk-devel >= 0.91.8
 BuildRequires:	docbook-dtd43-xml
-BuildRequires:	evolution-data-server-devel >= 2.24.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gnome-desktop-devel >= 2.26.0
-BuildRequires:	gnome-doc-utils >= 0.14.0
-BuildRequires:	gstreamer-devel >= 0.10.23
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
-BuildRequires:	gtk+2-devel >= 2:2.20.0
-BuildRequires:	gtk-doc
-BuildRequires:	gtk-doc-automake >= 1.11
+BuildRequires:	gnome-desktop-devel >= 3.0.0
+BuildRequires:	gnome-doc-utils >= 0.20.0
+BuildRequires:	gnome-video-effects
+BuildRequires:	gobject-introspection-devel >= 0.10.0
+BuildRequires:	gstreamer-devel >= 0.10.32
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.32
+BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk-doc >= 1.14
+BuildRequires:	gtk-doc-automake >= 1.14
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libcanberra-gtk-devel
-BuildRequires:	librsvg-devel >= 2.18.2
-BuildRequires:	libtool
+BuildRequires:	libcanberra-gtk3-devel >= 0.26
+BuildRequires:	libgee-devel >= 0.6.0
+BuildRequires:	librsvg-devel >= 2.32.0
+BuildRequires:	libtool >= 2:2.2
+BuildRequires:	mx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	udev-glib-devel
+BuildRequires:	vala >= 0.12.0
 BuildRequires:	xorg-lib-libXxf86vm-devel
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
-Requires:	gstreamer-theora >= 0.10.23
-Requires:	gstreamer-vorbis >= 0.10.23
-Requires:	gtk+2 >= 2:2.20.0
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	gnome-video-effects
+Requires:	gstreamer-plugins-bad
+Requires:	gstreamer-plugins-good
+Requires:	gstreamer-theora >= 0.10.32
+Requires:	gstreamer-vorbis >= 0.10.32
+Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,14 +60,25 @@ Cheese to program do pobierania zdjęć i filmów z kamery internetowej.
 Udostępnia także kilka graficznych efektów w celu zaspokojenia
 instynktów oglądania u użytkowników.
 
+%package libs
+Summary:	Cheese libraries
+Summary(pl.UTF-8):	Biblioteki Cheese
+Group:		X11/Libraries
+
+%description libs
+Cheese libraries.
+
+%description libs -l pl.UTF-8
+Biblioteki Cheese.
+
 %package devel
 Summary:	Cheese header files
 Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	gstreamer-plugins-base-devel >= 0.10.23
-Requires:	gtk+2-devel >= 2:2.20.0
-Requires:	libcanberra-gtk-devel
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	gstreamer-plugins-base-devel >= 0.10.32
+Requires:	gtk+3-devel >= 3.0.0
+Requires:	libcanberra-gtk3-devel >= 0.26
 
 %description devel
 Cheese header files.
@@ -90,7 +109,7 @@ Dokumentacja API Cheese.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-schemas-install \
+	--disable-schemas-compile \
 	--disable-scrollkeeper \
 	--disable-silent-rules \
 	--disable-static \
@@ -112,38 +131,43 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %update_icon_cache hicolor
-%gconf_schema_install cheese.schemas
 %scrollkeeper_update_post
-
-%preun
-%gconf_schema_uninstall cheese.schemas
+%glib_compile_schemas
 
 %postun
-/sbin/ldconfig
 %update_icon_cache hicolor
 %scrollkeeper_update_postun
+%glib_compile_schemas
+
+%post libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/cheese
-%attr(755,root,root) %{_libdir}/libcheese-gtk.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.18
-%dir %{_libdir}/cheese
-%attr(755,root,root) %{_libdir}/cheese/cheese-bugreport.sh
-%{_sysconfdir}/gconf/schemas/cheese.schemas
 %{_desktopdir}/cheese.desktop
 %{_datadir}/cheese
-%{_datadir}/dbus-1/services/org.gnome.Cheese.service
+%{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
 %{_iconsdir}/hicolor/*/apps/*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libcheese-gtk.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.19
+%attr(755,root,root) %{_libdir}/libcheese.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcheese.so.0
+%{_libdir}/girepository-1.0/Cheese-3.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so
+%attr(755,root,root) %{_libdir}/libcheese.so
+%{_datadir}/gir-1.0/Cheese-3.0.gir
 %{_includedir}/cheese
 %{_pkgconfigdir}/cheese-gtk.pc
+%{_pkgconfigdir}/cheese.pc
 
 %files apidocs
 %defattr(644,root,root,755)
