@@ -1,0 +1,12 @@
+diff -ur cheese-3.0.0.bak/data/cheese-gtk.pc.in cheese-3.0.0/data/cheese-gtk.pc.in
+--- cheese-3.0.0.bak/data/cheese-gtk.pc.in	2011-03-09 20:42:17.000000000 +0100
++++ cheese-3.0.0/data/cheese-gtk.pc.in	2011-04-05 23:57:30.755573925 +0200
+@@ -7,7 +7,7 @@
+ Name: cheese
+ Description: Cheese Webcam widgets
+ Version: @VERSION@
+-Requires.private: gtk+-x11-2.0 gstreamer-0.10 gstreamer-plugins-base-0.10 libcanberra-gtk
++Requires.private: gtk+-x11-2.0 gstreamer-0.10 gstreamer-plugins-base-0.10 libcanberra-gtk3
+ Libs: -L${libdir} -lcheese-gtk
+ Cflags: -I${includedir}/cheese
+ 
