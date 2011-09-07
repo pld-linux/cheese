@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.0.2
-Release:	2
+Version:	3.1.91.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	a231abd4b64c6327613e937e0ec12ff9
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.1/%{name}-%{version}.tar.xz
+# Source0-md5:	dfef958125c8a0f0e04ab4800d83b63e
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -35,9 +35,11 @@ BuildRequires:	mx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
 BuildRequires:	vala >= 0.12.0
 BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	xz
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
