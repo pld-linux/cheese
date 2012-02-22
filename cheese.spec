@@ -1,11 +1,11 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.2.2
+Version:	3.3.90
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.2/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.3/%{name}-%{version}.tar.xz
 # Source0-md5:	a674bbe235cc960e578bb71b6aa55783
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
@@ -37,9 +37,10 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
-BuildRequires:	vala >= 0.13.2
+BuildRequires:	vala >= 2:0.14.0
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	xz
+BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	scrollkeeper
@@ -50,6 +51,7 @@ Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 0.10.32
 Requires:	gstreamer-vorbis >= 0.10.32
 Requires:	hicolor-icon-theme
+Suggests:	nautilus-sendto >= 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -106,13 +108,12 @@ Dokumentacja API Cheese.
 %build
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
 	--disable-schemas-compile \
-	--disable-scrollkeeper \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-gtk-doc \
@@ -152,14 +153,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/cheese.desktop
 %{_datadir}/cheese
 %{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
-%{_iconsdir}/hicolor/*/apps/*
+%{_iconsdir}/hicolor/*/*/*.png
+%{_iconsdir}/hicolor/*/*/*.svg
+%{_mandir}/man1/cheese.1*
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.20
+%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.21
 %attr(755,root,root) %{_libdir}/libcheese.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcheese.so.1
+%attr(755,root,root) %ghost %{_libdir}/libcheese.so.3
 %{_libdir}/girepository-1.0/Cheese-3.0.typelib
 
 %files devel
