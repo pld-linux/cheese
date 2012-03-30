@@ -2,7 +2,7 @@ Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
 Version:	3.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.4/%{name}-%{version}.tar.xz
@@ -46,13 +46,13 @@ BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	scrollkeeper
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-video-effects
 Requires:	gstreamer-plugins-bad
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 0.10.32
 Requires:	gstreamer-vorbis >= 0.10.32
+Requires:	gstreamer-vp8 >= 0.10.32
 Requires:	hicolor-icon-theme
 Suggests:	nautilus-sendto >= 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -131,19 +131,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
-%find_lang %{name} --with-gnome --with-omf
+%find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_icon_cache hicolor
-%scrollkeeper_update_post
 %glib_compile_schemas
 
 %postun
 %update_icon_cache hicolor
-%scrollkeeper_update_postun
 %glib_compile_schemas
 
 %post libs -p /sbin/ldconfig
