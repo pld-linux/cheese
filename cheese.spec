@@ -52,7 +52,7 @@ Requires:	gstreamer-plugins-bad
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 0.10.32
 Requires:	gstreamer-vorbis >= 0.10.32
-Requires:	gstreamer-vp8 >= 0.10.32
+Requires:	gstreamer-vp8
 Requires:	hicolor-icon-theme
 Suggests:	nautilus-sendto >= 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
