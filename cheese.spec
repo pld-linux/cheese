@@ -2,7 +2,7 @@ Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
 Version:	3.6.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.6/%{name}-%{version}.tar.xz
@@ -52,7 +52,6 @@ Requires:	gstreamer-plugins-bad
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 1.0.0
 Requires:	gstreamer-vorbis >= 1.0.0
-Requires:	gstreamer-vp8
 Requires:	hicolor-icon-theme
 Suggests:	nautilus-sendto >= 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
