@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.6.2
+Version:	3.8.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	d152bd8bd29684a89213c633310634ac
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	a0d3680db340f6cce2644c6ee5de36e7
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -31,7 +31,6 @@ BuildRequires:	gtk-doc-automake >= 1.14
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	itstool
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
-BuildRequires:	libgee-devel >= 0.6.0
 BuildRequires:	librsvg-devel >= 2.32.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pango-devel >= 1.28.0
@@ -40,11 +39,11 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
-BuildRequires:	vala >= 2:0.14.0
+BuildRequires:	vala >= 2:0.16.0
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.28.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-video-effects
