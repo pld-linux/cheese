@@ -1,22 +1,22 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.8.3
+Version:	3.10.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	62f2670fa2c44fb51613ebb8f4d2c07c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	66a138e200988d275f36bfa58e76af1c
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10.0
-BuildRequires:	clutter-devel >= 1.10.0
+BuildRequires:	clutter-devel >= 1.14.0
 BuildRequires:	clutter-gst-devel >= 1.9.0
 BuildRequires:	clutter-gtk-devel >= 0.91.8
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gnome-doc-utils >= 0.20.0
@@ -39,11 +39,11 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
-BuildRequires:	vala >= 2:0.16.0
+BuildRequires:	vala >= 2:0.18.0
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.28.0
+Requires(post,postun):	glib2 >= 1:2.32.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-video-effects
