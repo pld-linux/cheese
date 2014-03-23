@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
 Version:	3.10.2
 Release:	2
-License:	GPL
+License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.10/%{name}-%{version}.tar.xz
 # Source0-md5:	2a344ca60794879a6fcb83f9afa01f1b
@@ -15,6 +15,8 @@ BuildRequires:	clutter-devel >= 1.14.0
 BuildRequires:	clutter-gst-devel >= 1.9.0
 BuildRequires:	clutter-gtk-devel >= 0.91.8
 BuildRequires:	docbook-dtd43-xml
+BuildRequires:	docbook-style-xsl
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gnome-common >= 2.24.0
@@ -33,14 +35,16 @@ BuildRequires:	itstool
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	librsvg-devel >= 2.32.0
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	pango-devel >= 1.28.0
-BuildRequires:	pkgconfig >= 0.24
+BuildRequires:	libxslt-progs
+BuildRequires:	pango-devel >= 1:1.28.0
+BuildRequires:	pkgconfig >= 1:0.24
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
 BuildRequires:	vala >= 2:0.18.0
-BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.32.0
@@ -70,6 +74,15 @@ instynktów oglądania u użytkowników.
 Summary:	Cheese libraries
 Summary(pl.UTF-8):	Biblioteki Cheese
 Group:		X11/Libraries
+Requires:	cairo >= 1.10.0
+Requires:	clutter >= 1.14.0
+Requires:	clutter-gst >= 1.9.0
+Requires:	clutter-gtk >= 0.91.8
+Requires:	glib2 >= 1:2.32.0
+Requires:	gtk+3 >= 3.4.4
+Requires:	libcanberra-gtk3 >= 0.26
+Requires:	librsvg >= 2.32.0
+Requires:	pango >= 1:1.28.0
 
 %description libs
 Cheese libraries.
@@ -82,10 +95,17 @@ Summary:	Cheese header files
 Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	cairo-devel >= 1.10.0
+Requires:	clutter-devel >= 1.14.0
+Requires:	clutter-gst-devel >= 1.9.0
+Requires:	clutter-gtk-devel >= 0.91.8
+Requires:	glib2-devel >= 1:2.32.0
+Requires:	gstreamer-devel >= 1.0.0
 Requires:	gstreamer-plugins-bad-devel >= 1.0.0
 Requires:	gstreamer-plugins-base-devel >= 1.0.0
 Requires:	gtk+3-devel >= 3.4.4
 Requires:	libcanberra-gtk3-devel >= 0.26
+Requires:	pango-devel >= 1:1.28.0
 
 %description devel
 Cheese header files.
@@ -118,7 +138,6 @@ Dokumentacja API Cheese.
 %configure \
 	--disable-schemas-compile \
 	--disable-silent-rules \
-	--disable-static \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -144,18 +163,20 @@ rm -rf $RPM_BUILD_ROOT
 %update_icon_cache hicolor
 %glib_compile_schemas
 
-%post libs -p /sbin/ldconfig
-%postun libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/cheese
 %{_desktopdir}/cheese.desktop
 %{_datadir}/cheese
 %{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
+%{_iconsdir}/hicolor/*/actions/browse-webcam-effects.*
+%{_iconsdir}/hicolor/*/actions/cheese-take-burst.*
+%{_iconsdir}/hicolor/*/actions/cheese-take-photo.*
+%{_iconsdir}/hicolor/*/apps/cheese.png
 %{_mandir}/man1/cheese.1*
 
 %files libs
