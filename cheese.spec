@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.10.2
-Release:	2
+Version:	3.12.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	2a344ca60794879a6fcb83f9afa01f1b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	90e0e1e025bb4c9053c43b62a9afe62c
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -18,7 +18,7 @@ BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.32.0
+BuildRequires:	glib2-devel >= 1:2.40.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gnome-doc-utils >= 0.20.0
@@ -27,7 +27,7 @@ BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
-BuildRequires:	gtk+3-devel >= 3.4.4
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	gtk-doc-automake >= 1.14
 BuildRequires:	intltool >= 0.50.0
@@ -42,7 +42,7 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
-BuildRequires:	vala >= 2:0.18.0
+BuildRequires:	vala >= 2:0.24.0
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xz
@@ -78,8 +78,8 @@ Requires:	cairo >= 1.10.0
 Requires:	clutter >= 1.14.0
 Requires:	clutter-gst >= 1.9.0
 Requires:	clutter-gtk >= 0.91.8
-Requires:	glib2 >= 1:2.32.0
-Requires:	gtk+3 >= 3.4.4
+Requires:	glib2 >= 1:2.40.0
+Requires:	gtk+3 >= 3.10.0
 Requires:	libcanberra-gtk3 >= 0.26
 Requires:	librsvg >= 2.32.0
 Requires:	pango >= 1:1.28.0
@@ -99,11 +99,11 @@ Requires:	cairo-devel >= 1.10.0
 Requires:	clutter-devel >= 1.14.0
 Requires:	clutter-gst-devel >= 1.9.0
 Requires:	clutter-gtk-devel >= 0.91.8
-Requires:	glib2-devel >= 1:2.32.0
+Requires:	glib2-devel >= 1:2.40.0
 Requires:	gstreamer-devel >= 1.0.0
 Requires:	gstreamer-plugins-bad-devel >= 1.0.0
 Requires:	gstreamer-plugins-base-devel >= 1.0.0
-Requires:	gtk+3-devel >= 3.4.4
+Requires:	gtk+3-devel >= 3.10.0
 Requires:	libcanberra-gtk3-devel >= 0.26
 Requires:	pango-devel >= 1:1.28.0
 
@@ -171,11 +171,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/cheese
 %{_desktopdir}/cheese.desktop
-%{_datadir}/cheese
+%{_datadir}/appdata/cheese.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
-%{_iconsdir}/hicolor/*/actions/browse-webcam-effects.*
-%{_iconsdir}/hicolor/*/actions/cheese-take-burst.*
-%{_iconsdir}/hicolor/*/actions/cheese-take-photo.*
 %{_iconsdir}/hicolor/*/apps/cheese.png
 %{_mandir}/man1/cheese.1*
 
