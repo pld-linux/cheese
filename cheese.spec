@@ -1,17 +1,16 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.12.2
+Version:	3.14.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	fab1e00717d8f3e027b9bb79299e12e8
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	4e990e97be5901b1c20323af8c345ad7
 URL:		http://projects.gnome.org/cheese/
-BuildRequires:	appdata-tools
+BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
-BuildRequires:	cairo-devel >= 1.10.0
+BuildRequires:	automake >= 1:1.12
 BuildRequires:	clutter-devel >= 1.14.0
 BuildRequires:	clutter-gst-devel >= 1.9.0
 BuildRequires:	clutter-gtk-devel >= 0.91.8
@@ -28,16 +27,14 @@ BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
-BuildRequires:	gtk+3-devel >= 3.10.0
+BuildRequires:	gtk+3-devel >= 3.13.4
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	gtk-doc-automake >= 1.14
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	itstool
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
-BuildRequires:	librsvg-devel >= 2.32.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxslt-progs
-BuildRequires:	pango-devel >= 1:1.28.0
 BuildRequires:	pkgconfig >= 1:0.24
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.601
@@ -75,15 +72,12 @@ instynktów oglądania u użytkowników.
 Summary:	Cheese libraries
 Summary(pl.UTF-8):	Biblioteki Cheese
 Group:		X11/Libraries
-Requires:	cairo >= 1.10.0
 Requires:	clutter >= 1.14.0
 Requires:	clutter-gst >= 1.9.0
 Requires:	clutter-gtk >= 0.91.8
 Requires:	glib2 >= 1:2.40.0
-Requires:	gtk+3 >= 3.10.0
+Requires:	gtk+3 >= 3.13.4
 Requires:	libcanberra-gtk3 >= 0.26
-Requires:	librsvg >= 2.32.0
-Requires:	pango >= 1:1.28.0
 
 %description libs
 Cheese libraries.
@@ -96,7 +90,6 @@ Summary:	Cheese header files
 Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	cairo-devel >= 1.10.0
 Requires:	clutter-devel >= 1.14.0
 Requires:	clutter-gst-devel >= 1.9.0
 Requires:	clutter-gtk-devel >= 0.91.8
@@ -104,9 +97,8 @@ Requires:	glib2-devel >= 1:2.40.0
 Requires:	gstreamer-devel >= 1.0.0
 Requires:	gstreamer-plugins-bad-devel >= 1.0.0
 Requires:	gstreamer-plugins-base-devel >= 1.0.0
-Requires:	gtk+3-devel >= 3.10.0
+Requires:	gtk+3-devel >= 3.13.4
 Requires:	libcanberra-gtk3-devel >= 0.26
-Requires:	pango-devel >= 1:1.28.0
 
 %description devel
 Cheese header files.
@@ -174,9 +166,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/cheese
-%{_desktopdir}/cheese.desktop
-%{_datadir}/appdata/cheese.appdata.xml
+%attr(755,root,root) %{_libdir}/gnome-camera-service
+%{_datadir}/appdata/org.gnome.Cheese.appdata.xml
+%{_datadir}/dbus-1/services/org.gnome.Camera.service
+%{_datadir}/dbus-1/services/org.gnome.Cheese.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
+%{_desktopdir}/org.gnome.Cheese.desktop
 %{_iconsdir}/hicolor/*/apps/cheese.png
 %{_mandir}/man1/cheese.1*
 
