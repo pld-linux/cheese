@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.14.0
+Version:	3.14.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.14/%{name}-%{version}.tar.xz
-# Source0-md5:	4e990e97be5901b1c20323af8c345ad7
+# Source0-md5:	02ed745aa52118f135051d763d233c03
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.64
