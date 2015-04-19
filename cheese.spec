@@ -1,12 +1,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.16.0
-Release:	2
+Version:	3.16.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	8a2f1cc55461a2fe2c2363ae9facd9b7
+# Source0-md5:	e18b0742aa190d4c3110bd427c6b7a50
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.64
@@ -54,7 +54,7 @@ Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 1.0.0
 Requires:	gstreamer-vorbis >= 1.0.0
 Requires:	gstreamer-vpx
-Requires:	hicolor-icon-theme
+Requires:	hicolor-icon-theme >= 0.15
 Suggests:	nautilus-sendto >= 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -172,7 +172,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.gnome.Cheese.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Cheese.gschema.xml
 %{_desktopdir}/org.gnome.Cheese.desktop
-%{_iconsdir}/hicolor/*/apps/cheese.png
+%{_iconsdir}/hicolor/*x*/apps/cheese.png
+%{_iconsdir}/hicolor/symbolic/apps/cheese-symbolic.svg
 %{_mandir}/man1/cheese.1*
 
 %files libs
