@@ -1,18 +1,18 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.16.1
+Version:	3.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	e18b0742aa190d4c3110bd427c6b7a50
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	d0a1141d55276d1fd87ea2c0aefb3361
 URL:		http://projects.gnome.org/cheese/
 BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.12
 BuildRequires:	clutter-devel >= 1.14.0
-BuildRequires:	clutter-gst2-devel >= 1.9.0
+BuildRequires:	clutter-gst-devel >= 3.0.0
 BuildRequires:	clutter-gtk-devel >= 0.91.8
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docbook-style-xsl
@@ -25,7 +25,7 @@ BuildRequires:	gnome-doc-utils >= 0.20.0
 BuildRequires:	gnome-video-effects
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gstreamer-devel >= 1.0.0
-BuildRequires:	gstreamer-plugins-bad-devel >= 1.0.0
+BuildRequires:	gstreamer-plugins-bad-devel >= 1.4.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+3-devel >= 3.13.4
 BuildRequires:	gtk-doc >= 1.14
@@ -49,7 +49,7 @@ Requires(post,postun):	glib2 >= 1:2.40.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-video-effects
-Requires:	gstreamer-plugins-bad
+Requires:	gstreamer-plugins-bad >= 1.4.0
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-theora >= 1.0.0
 Requires:	gstreamer-vorbis >= 1.0.0
@@ -73,7 +73,7 @@ Summary:	Cheese libraries
 Summary(pl.UTF-8):	Biblioteki Cheese
 Group:		X11/Libraries
 Requires:	clutter >= 1.14.0
-Requires:	clutter-gst >= 1.9.0
+Requires:	clutter-gst >= 3.0.0
 Requires:	clutter-gtk >= 0.91.8
 Requires:	glib2 >= 1:2.40.0
 Requires:	gtk+3 >= 3.13.4
@@ -91,11 +91,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe Cheese
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	clutter-devel >= 1.14.0
-Requires:	clutter-gst-devel >= 1.9.0
+Requires:	clutter-gst-devel >= 3.0.0
 Requires:	clutter-gtk-devel >= 0.91.8
 Requires:	glib2-devel >= 1:2.40.0
 Requires:	gstreamer-devel >= 1.0.0
-Requires:	gstreamer-plugins-bad-devel >= 1.0.0
+Requires:	gstreamer-plugins-bad-devel >= 1.4.0
 Requires:	gstreamer-plugins-base-devel >= 1.0.0
 Requires:	gtk+3-devel >= 3.13.4
 Requires:	libcanberra-gtk3-devel >= 0.26
@@ -179,9 +179,9 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.23
+%attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.25
 %attr(755,root,root) %{_libdir}/libcheese.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcheese.so.7
+%attr(755,root,root) %ghost %{_libdir}/libcheese.so.8
 %{_libdir}/girepository-1.0/Cheese-3.0.typelib
 
 %files devel
