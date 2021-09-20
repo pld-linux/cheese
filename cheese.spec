@@ -5,12 +5,12 @@
 Summary:	A cheesy program to take pictures and videos from your web cam
 Summary(pl.UTF-8):	Program do pobierania zdjęć i filmów z kamery internetowej
 Name:		cheese
-Version:	3.38.0
+Version:	41.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/3.38/%{name}-%{version}.tar.xz
-# Source0-md5:	83b580b1451b27d43403d3ae5829e08c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/41/%{name}-%{version}.tar.xz
+# Source0-md5:	2ef81bbad5e19348b231af64a307605e
 URL:		https://wiki.gnome.org/Apps/Cheese
 BuildRequires:	appstream-glib-devel
 BuildRequires:	clutter-devel >= 1.14.0
@@ -36,6 +36,7 @@ BuildRequires:	libxslt-progs
 BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.24
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
@@ -170,13 +171,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libcheese-gtk.so.25
 %attr(755,root,root) %{_libdir}/libcheese.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcheese.so.8
-%{_libdir}/girepository-1.0/Cheese-3.0.typelib
+%{_libdir}/girepository-1.0/Cheese-41.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheese-gtk.so
 %attr(755,root,root) %{_libdir}/libcheese.so
-%{_datadir}/gir-1.0/Cheese-3.0.gir
+%{_datadir}/gir-1.0/Cheese-41.0.gir
 %{_includedir}/cheese
 %{_pkgconfigdir}/cheese-gtk.pc
 %{_pkgconfigdir}/cheese.pc
