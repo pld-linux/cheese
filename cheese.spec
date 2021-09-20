@@ -9,7 +9,7 @@ Version:	41.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cheese/41/%{name}-%{version}.tar.xz
+Source0:	https://download.gnome.org/sources/cheese/41/%{name}-%{version}.tar.xz
 # Source0-md5:	2ef81bbad5e19348b231af64a307605e
 URL:		https://wiki.gnome.org/Apps/Cheese
 BuildRequires:	appstream-glib-devel
